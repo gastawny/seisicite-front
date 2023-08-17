@@ -7,6 +7,6 @@ export function AppRoutes() {
       <Route path="/">
         <Route index element={<Home />} />
       </Route>
-    </Routes>
+    </Routes >
   )
 }
