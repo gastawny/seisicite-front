@@ -6,7 +6,7 @@ export function Background() {
 
   const createLine = useCallback(() => {
     const lineWidth = Math.random() * 12
-    const animationDuration = Math.random() * 3
+    const animationDuration = Math.random() * 1
     const lineColor = Math.random() >= 0.5 ? '#0f9cd8' : '#ffcd01'
 
     const newLine = {
@@ -21,13 +21,13 @@ export function Background() {
 
     setTimeout(() => {
       setLines((prevLines) => prevLines.filter((line) => line.id !== newLine.id))
-    }, 5000)
+    }, 2500)
   }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
       createLine()
-    }, 500)
+    }, 400)
 
     return () => clearInterval(interval)
   }, [createLine])
