@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { keyframes, styled } from 'styled-components'
 
 export function Background() {
@@ -34,6 +35,7 @@ export function Background() {
 
   return (
     <>
+      <img className='absolute z-20 left-1/2 -translate-x-1/2 top-16 sm:top-8 w-4/5 sm:w-1/4 2xl:1/3' src="/assets/images/logo.png" />
       {lines.map((line) => (
         <Line
           lineColor={line.color}
@@ -45,6 +47,7 @@ export function Background() {
           }}
         />
       ))}
+      <Outlet />
     </>
   )
 }
