@@ -2,13 +2,13 @@
   position: relative;
   width: 25vw;
   height: 55vh;
-  background-color: #1c1c1c;
+  background-color: #222;
   border-radius: 8px;
   overflow: hidden;
 
   @media screen and (max-width: 1366px) {
-    width: 30vw;
-    height: 60vh;
+    width: 32vw;
+    height: 65vh;
   }
 
   @media screen and (max-width: 480px) {
@@ -24,7 +24,7 @@
   left: -50%;
   width: 456px;
   height: 504px;
-  background: linear-gradient(0deg, transparent, #0f9cd8, #0f9cd8, #0f9cd8);
+  background: linear-gradient(0deg, transparent, var(--primary), var(--primary), var(--primary));
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -42,7 +42,7 @@
   left: -50%;
   width: 456px;
   height: 504px;
-  background: linear-gradient(0deg, transparent, #0f9cd8, #0f9cd8, #0f9cd8);
+  background: linear-gradient(0deg, transparent, var(--primary), var(--primary), var(--primary));
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -66,8 +66,8 @@
 }
 
 .box form h2 {
-  color: #0f9cd8;
-  font-size: 2rem;
+  color: var(--primary);
+  font-size: 1.75rem;
   font-weight: 600;
   text-align: center;
   letter-spacing: 0.1em;
@@ -77,63 +77,9 @@
   }
 }
 
-.box form .inputBox {
-  position: relative;
-  width: 100%;
-  margin-top: 35px;
-}
-
-.box form .inputBox input {
-  position: relative;
-  width: 100%;
-  padding: 20px 10px 10px;
-  background: transparent;
-  outline: none;
-  color: #23242a;
-  font-size: 1em;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-  z-index: 8;
-}
-
-.box form .inputBox span {
-  position: absolute;
-  left: 0;
-  padding: 20px 0px 10px;
-  font-size: 1em;
-  color: #8f8f8f;
-  pointer-events: none;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-}
-
-.box form .inputBox input:valid ~ span,
-.box form .inputBox input:focus ~ span {
-  color: #0f9cd8;
-  transform: translateY(-34px);
-  font-size: 0.75em;
-}
-
-.box form .inputBox i {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 100%;
-  background: #0f9cd8;
-  border-radius: 4px;
-  overflow: hidden;
-  transition: 0.5;
-}
-
-.box form .inputBox input:valid ~ i,
-.box form .inputBox input:focus ~ i {
-  height: 44px;
-}
-
 .box form input[type='submit'] {
   padding: 9px 25px;
-  background: #0f9cd8;
+  background: var(--primary);
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
