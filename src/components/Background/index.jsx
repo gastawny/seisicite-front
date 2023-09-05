@@ -28,7 +28,7 @@ export function Background() {
   useEffect(() => {
     const interval = setInterval(() => {
       createLine()
-    }, 400)
+    }, 500)
 
     return () => clearInterval(interval)
   }, [createLine])
@@ -86,7 +86,7 @@ const Line = styled.div`
     top: 100%;
     left: 25%;
     width: 50%;
-    height: 100vh;
+    min-height: 100vh;
     opacity: 0.5;
     background: linear-gradient(${({ lineColor }) => lineColor}, transparent);
   }
