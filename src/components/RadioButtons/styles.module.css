@@ -1,0 +1,22 @@
+.wrapper {
+  width: 40rem;
+  background: #000000aa;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.wrapper .title {
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  background: #07455faa;
+  font-size: 2rem;
+  font-weight: 500;
+}
+.wrapper .box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 20px 30px;
+  border-radius: 10px;
+}

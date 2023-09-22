@@ -11,4 +11,5 @@
 body {
   background: var(--bg-color);
   overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
 }
