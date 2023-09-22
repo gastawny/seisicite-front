@@ -5,5 +5,13 @@ export function useCookies() {
   function getCookies(cookieName) {
     return cookies.get(cookieName)
   }
-  return { getCookies }
+
+  function setCookies(cookieName, cookieValue) {
+    cookies.set(cookieName, cookieValue)
+  }
+
+  return {
+    getCookies,
+    setCookies
+  }
 }

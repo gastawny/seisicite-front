@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router'
 import { Home } from './pages/Home'
 import { Background } from 'components/Background'
 import { Dashboard } from 'pages/Dashboard'
+import Questions from 'pages/Questions'
 
 export function AppRoutes() {
   return (
@@ -9,6 +10,7 @@ export function AppRoutes() {
       <Route path="/" element={<Background />}>
         <Route index element={<Home />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="questions" element={<Questions />} />
       </Route>
     </Routes >
   )
