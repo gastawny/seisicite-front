@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import Form from 'components/Form'
-// import { useNavigate } from 'react-router-dom'
-// import { useCookies } from 'hooks/useCookies'
+import { axiosServer } from 'config/axios'
+import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'hooks/useCookies'
 
 const initialValues = {
   username: '',
@@ -10,12 +11,15 @@ const initialValues = {
 
 export function Home() {
   const [datas, setDatas] = useState(initialValues)
-  // const { getCookies, setCookies } = useCookies()
-  // const navigate = useNavigate()
+  const [error, setError] = useState('')
+  const { getCookies, setCookies } = useCookies()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // const token = getCookies('auth')
-    // if (token) navigate('/dashboard')
+    const accessToken = getCookies('accessToken')
+
+    if (accessToken)
+      navigate('/dashboard')
   }, [])
 
   const handleInputChange = useCallback((type, event) => {
@@ -24,19 +28,36 @@ export function Home() {
     })
   }, [])
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault()
+    try {
+      const res = await axiosServer('/auth/signin', {
+        method: 'POST',
+        data: {
+          username: datas.username,
+          password: datas.password
+        }
+      })
 
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(datas),
-    // }
+      console.log(res)
 
-    // const response = fetch('/api/login', requestOptions)
-    // const data = response.json()
+      if (res.status !== 200) return
 
-    // setCookies('auth', data.token)
+      setCookies('accessToken', res.data.accessToken, {
+        httpOnly: true
+      })
+      setCookies('refreshToken', res.data.refreshToken, {
+        httpOnly: true
+      })
+      setCookies('user', res.data.username)
+
+      navigate('/dashboard')
+    } catch (error) {
+      console.log(error)
+      setError('Usuário ou senha inválidos')
+    }
+
+    setDatas(initialValues)
   }
 
   return (
@@ -49,6 +70,7 @@ export function Home() {
           <Form.Input value={datas.password} onChange={e => handleInputChange('password', e)}>
             Senha
           </Form.Input>
+          {error && <span>{error}</span>}
         </Form.Root>
       </div>
     </>

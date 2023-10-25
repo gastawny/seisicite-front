@@ -6,8 +6,8 @@ export function useCookies() {
     return cookies.get(cookieName)
   }
 
-  function setCookies(cookieName, cookieValue) {
-    cookies.set(cookieName, cookieValue)
+  function setCookies(cookieName, cookieValue, options = {}) {
+    cookies.set(cookieName, cookieValue, options)
   }
 
   return {
