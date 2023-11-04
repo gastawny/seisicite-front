@@ -1,0 +1,18 @@
+.wrapper {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+  overflow: hidden;
+}
+.wrapper .title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.wrapper .box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 10px;
+}
