@@ -7,14 +7,10 @@ export function sessionHOC(Component) {
     const { getCookies } = useCookies()
     const navigate = useNavigate()
 
-    useEffect(async () => {
-      const token = getCookies('auth')
+    useEffect(() => {
+      const token = getCookies('accessToken')
 
       if (!token) navigate('/')
-
-      // const response = await fetch('/api/session')
-      // const data = await response.json()
-      // manipulate data
 
     }, [])
 

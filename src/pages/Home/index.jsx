@@ -39,16 +39,10 @@ export function Home() {
         }
       })
 
-      console.log(res)
-
       if (res.status !== 200) return
 
-      setCookies('accessToken', res.data.accessToken, {
-        httpOnly: true
-      })
-      setCookies('refreshToken', res.data.refreshToken, {
-        httpOnly: true
-      })
+      setCookies('accessToken', res.data.accessToken)
+      setCookies('refreshToken', res.data.refreshToken)
       setCookies('user', res.data.username)
 
       navigate('/dashboard')
@@ -70,7 +64,7 @@ export function Home() {
           <Form.Input value={datas.password} onChange={e => handleInputChange('password', e)}>
             Senha
           </Form.Input>
-          {error && <span>{error}</span>}
+          {error && <span className='text-primary mt-2'>{error}</span>}
         </Form.Root>
       </div>
     </>
