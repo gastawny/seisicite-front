@@ -64,7 +64,6 @@ export function Background({ colors, frequency }) {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden flex gap-40 flex-col">
-      <img className='absolute z-20 left-1/2 -translate-x-1/2 top-16 sm:top-8 w-4/5 sm:w-1/4 2xl:1/3' src="/assets/images/logo.png" />
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
         {lines.map((line) => (
           <Line

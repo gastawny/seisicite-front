@@ -1,9 +1,10 @@
 import { RadioButtons } from 'components/RadioButtons'
 import { useState } from 'react'
+import { sessionHOC } from 'services/auth/sessionHOC'
 import questions from 'utils/questions'
 // import { useParams } from 'react-router-dom'
 
-export default function Questions() {
+function Questions() {
   // const { id } = useParams()
 
   const [selected, setSelected] = useState(
@@ -23,7 +24,7 @@ export default function Questions() {
   }
 
   return (
-    <div className='flex flex-wrap w-full gap-6 justify-center z-50 absolute left-1/2 -translate-x-1/2 mt-48'>
+    <div className='flex flex-wrap w-full gap-6 justify-center relative left-1/2 -translate-x-1/2 mt-48'>
       {questions.map((question, index) => {
         return <RadioButtons
           key={index}
@@ -36,3 +37,5 @@ export default function Questions() {
   )
 }
 
+const QuestionsWrapper = sessionHOC(Questions)
+export { QuestionsWrapper as Questions }

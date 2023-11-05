@@ -10,8 +10,13 @@ export function useCookies() {
     cookies.set(cookieName, cookieValue, options)
   }
 
+  function removeCookies(cookieName) {
+    cookies.remove(cookieName)
+  }
+
   return {
     getCookies,
-    setCookies
+    setCookies,
+    removeCookies
   }
 }

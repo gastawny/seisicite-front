@@ -10,7 +10,7 @@ export function defineInterceptors() {
       return new Promise((resolve, reject) => {
         const originalReq = err?.config
 
-        if (err?.response?.status === 401 && err?.config && !err?.config?._retry) {
+        if (err?.response?.status === 500 && err?.config && !err?.config?._retry) {
           originalReq._retry = true
           originalReq.__isRetryRequest = true
           axiosServer(originalReq).then(resolve).catch(reject)
