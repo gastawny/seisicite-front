@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import Form from 'components/Form'
-import { axiosServer } from 'config/axios'
+import { axiosServer } from 'config/axios/axios'
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'hooks/useCookies'
 

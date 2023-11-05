@@ -1,8 +1,11 @@
 import { RadioButtons } from 'components/RadioButtons'
 import { useState } from 'react'
 import questions from 'utils/questions'
+// import { useParams } from 'react-router-dom'
 
 export default function Questions() {
+  // const { id } = useParams()
+
   const [selected, setSelected] = useState(
     questions.map((question, index) => ({
       [index]: question.options[0]

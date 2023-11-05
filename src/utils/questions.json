@@ -1,18 +1,22 @@
 [
   {
-    "title": "What is 2 + 2?",
-    "options": ["4", "22", "5"]
+    "title": "O aluno(a) utilizou linguagem técnica e teve clareza na exposição do trabalho?",
+    "options": ["6", "7", "8", "9", "10"]
   },
   {
-    "title": "What is 2 + 2?",
-    "options": ["4", "22", "5"]
+    "title": "O tempo de apresentação do trabalho foi adequado?",
+    "options": ["6", "7", "8", "9", "10"]
   },
   {
-    "title": "What is 4 + 4?",
-    "options": ["8", "44", "10"]
+    "title": "O(a) aluno(a) demonstrou domínio do assunto durante a apresentação?",
+    "options": ["6", "7", "8", "9", "10"]
   },
   {
-    "title": "What is 4 + 4?",
-    "options": ["8", "44", "10"]
+    "title": "O conteúdo visual e a apresentação do trabalho foram adequados?",
+    "options": ["6", "7", "8", "9", "10"]
+  },
+  {
+    "title": "O desempenho do(a) aluno(a) foi satisfatório na arguição?",
+    "options": ["6", "7", "8", "9", "10"]
   }
 ]

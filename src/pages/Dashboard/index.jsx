@@ -1,6 +1,6 @@
 import { Card } from 'components/Card'
 import { SearchFilter } from 'components/SearchFilter'
-import { axiosServer } from 'config/axios'
+import { axiosServer } from 'config/axios/axios'
 import { useCookies } from 'hooks/useCookies'
 import { useCallback, useEffect, useState } from 'react'
 import { sessionHOC } from 'services/auth/sessionHOC'

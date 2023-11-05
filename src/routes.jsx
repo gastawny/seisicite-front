@@ -10,7 +10,7 @@ export function AppRoutes() {
       <Route path="/" element={<Background colors={['var(--primary)', 'var(--secondary)']} frequency={500} />}>
         <Route index element={<Home />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="questions" element={<Questions />} />
+        <Route path="questions/:id" element={<Questions />} />
       </Route>
     </Routes >
   )
