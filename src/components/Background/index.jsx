@@ -63,7 +63,7 @@ export function Background({ colors, frequency }) {
   }, [createLine, isTabVisible, frequency])
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden flex gap-40 flex-col">
+    <div className="relative w-full min-h-screen overflow-hidden flex flex-col">
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
         {lines.map((line) => (
           <Line

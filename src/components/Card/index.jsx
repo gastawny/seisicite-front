@@ -9,7 +9,7 @@ export function Card({ title, id, author, theme }) {
         <h3>{title}</h3>
         <h4>{author}</h4>
         <h5>{theme}</h5>
-        <a href="#">Read More</a>
+        <a href={`/questions/${id}`}>Avaliar</a>
       </div>
     </div>
   )

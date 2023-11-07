@@ -1,4 +1,5 @@
 import { RadioButtons } from 'components/RadioButtons'
+import { Timer } from 'components/Timer'
 import { useState } from 'react'
 import { sessionHOC } from 'services/auth/sessionHOC'
 import questions from 'utils/questions'
@@ -24,16 +25,21 @@ function Questions() {
   }
 
   return (
-    <div className='flex flex-wrap w-full gap-6 justify-center relative left-1/2 -translate-x-1/2 mt-48'>
-      {questions.map((question, index) => {
-        return <RadioButtons
-          key={index}
-          setSelected={data => handleSetSelected(data, index)}
-          title={question.title}
-          options={question.options}
-        />
-      })}
-    </div>
+    <>
+      <div className='mx-auto mt-32'>
+        <Timer />
+      </div>
+      <div className='flex flex-wrap w-full gap-6 justify-center relative left-1/2 my-16 -translate-x-1/2'>
+        {questions.map((question, index) => {
+          return <RadioButtons
+            key={index}
+            setSelected={data => handleSetSelected(data, index)}
+            title={question.title}
+            options={question.options}
+          />
+        })}
+      </div>
+    </>
   )
 }
 

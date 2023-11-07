@@ -10,22 +10,25 @@ export function defineInterceptors() {
       return new Promise((resolve, reject) => {
         const originalReq = err?.config
 
-        if (err?.response?.status === 500 && err?.config && !err?.config?._retry) {
+        const reqStatus = ['400', '401', '403', '404', '500']
+
+        if (reqStatus.includes(`${err?.response?.status}`) && err?.config && !err?.config?._retry) {
           originalReq._retry = true
           originalReq.__isRetryRequest = true
           axiosServer(originalReq).then(resolve).catch(reject)
 
           const { getCookies, setCookies } = useCookies()
-          const username = getCookies('user')
+          const user = getCookies('user')
           const accessToken = getCookies('accessToken')
 
-          const res = axiosServer(`/auth/refresh/${username}`, {
+          const res = axiosServer(`/auth/refresh/${user?.username}`, {
             method: 'PUT',
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
           }).then((res) => {
             setCookies('refreshToken', res.data.refreshToken)
+            setCookies('accessToken', res.data.accessToken)
             originalReq.headers['Authorization'] = `Bearer ${res.data.refreshToken}`
             return axiosServer(originalReq)
           })

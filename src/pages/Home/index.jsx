@@ -43,7 +43,10 @@ export function Home() {
 
       setCookies('accessToken', res.data.accessToken)
       setCookies('refreshToken', res.data.refreshToken)
-      setCookies('user', res.data.username)
+      setCookies('user', {
+        username: res.data.username,
+        userId: res.data.userId
+      })
 
       navigate('/dashboard')
     } catch (error) {
