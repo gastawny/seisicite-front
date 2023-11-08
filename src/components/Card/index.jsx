@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './styles.css'
 
 export function Card({ title, id, author, theme }) {
@@ -9,7 +10,8 @@ export function Card({ title, id, author, theme }) {
         <h3>{title}</h3>
         <h4>{author}</h4>
         <h5>{theme}</h5>
-        <a href={`/questions/${id}`}>Avaliar</a>
+        <Link to={`/questions/${id}?edit=true`}>Editar</Link>
+        <Link to={`/questions/${id}`}>Avaliar</Link>
       </div>
     </div>
   )

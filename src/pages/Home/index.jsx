@@ -41,11 +41,17 @@ export function Home() {
 
       if (res.status !== 200) return
 
-      setCookies('accessToken', res.data.accessToken)
-      setCookies('refreshToken', res.data.refreshToken)
+      setCookies('accessToken', res.data.accessToken, {
+        expires: new Date(res.data.expiration),
+      })
+      setCookies('refreshToken', res.data.refreshToken, {
+        expires: new Date(res.data.expiration),
+      })
       setCookies('user', {
         username: res.data.username,
         userId: res.data.userId
+      }, {
+        expires: new Date(res.data.expiration)
       })
 
       navigate('/dashboard')

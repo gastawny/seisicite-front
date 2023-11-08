@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Radio } from './Radio'
 import styles from './styles.module.css'
 import { v4 } from 'uuid'
 
-export function RadioButtons({ options, title, setSelected }) {
-  const [option, setOption] = useState(options[0])
+export function RadioButtons({ options, title, setSelected, preSelected }) {
+  const [option, setOption] = useState(preSelected)
+
+  useEffect(() => {
+    setOption(preSelected)
+  }, [preSelected])
 
   const handleChange = (event) => {
     setOption(event.target.value)

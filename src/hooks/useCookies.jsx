@@ -7,7 +7,9 @@ export function useCookies() {
   }
 
   function setCookies(cookieName, cookieValue, options = {}) {
-    cookies.set(cookieName, cookieValue, options)
+    cookies.set(cookieName, cookieValue, {
+      ...options,
+    })
   }
 
   function removeCookies(cookieName) {
