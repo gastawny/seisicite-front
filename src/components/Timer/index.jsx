@@ -37,7 +37,7 @@ export function Timer() {
   const seconds = totalSeconds % 60
 
   return (
-    <div className='bg-zinc-950 bg-opacity-40 text-white rounded-md p-4 flex flex-col w-64 text-xl gap-2'>
+    <div className='bg-zinc-950 bg-opacity-40 text-white rounded-md p-4 flex flex-col w-full text-xl gap-2'>
       <div className='text-primary text-center text-6xl'>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
       <div className='flex gap-4 mx-auto'>
         {isRunning ? (
