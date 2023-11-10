@@ -1,14 +1,29 @@
 .box {
   position: relative;
   width: 25vw;
-  height: 55vh;
+  height: 66vh;
   background-color: #222;
   border-radius: 8px;
   overflow: hidden;
 
   @media screen and (max-width: 1366px) {
     width: 32vw;
-    height: 65vh;
+    height: 55vh;
+  }
+
+  @media screen and (max-width: 1232px) {
+    width: 32vw;
+    height: 60vh;
+  }
+
+  @media screen and (max-width: 1050px) {
+    width: 38vw;
+    height: 58vh;
+  }
+
+  @media screen and (max-width: 980px) {
+    width: 38vw;
+    height: 64vh;
   }
 
   @media screen and (max-width: 800px) {
@@ -94,6 +109,11 @@
 
 .box form input[type='submit']:active {
   opacity: 0.8;
+}
+
+.box form > span {
+  color: red;
+  font-weight: bold;
 }
 
 @keyframes animate {

@@ -70,7 +70,7 @@ export function Home() {
           <Form.Input value={datas.username} onChange={e => handleInputChange('username', e)}>
             Usuário
           </Form.Input>
-          <Form.Input value={datas.password} onChange={e => handleInputChange('password', e)}>
+          <Form.Input value={datas.password} type='password' onChange={e => handleInputChange('password', e)}>
             Senha
           </Form.Input>
           {error && <span className='text-primary mt-2'>{error}</span>}
