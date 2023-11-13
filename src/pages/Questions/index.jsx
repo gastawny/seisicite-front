@@ -13,6 +13,7 @@ function Questions() {
   const { getCookies } = useCookies()
   const location = useLocation()
   const navigate = useNavigate()
+  const [rejectedEdit, setRejectedEdit] = useState('')
   const [message, setMessage] = useState('')
   const [modal, setModal] = useState(false)
   const [selected, setSelected] = useState(
@@ -24,17 +25,18 @@ function Questions() {
   const queryParams = new URLSearchParams(location.search)
 
   useEffect(() => {
-    try {
-      const edit = queryParams.get('edit')
+    const edit = queryParams.get('edit')
 
-      if (edit == 'true') {
-        (async () => {
+    if (edit == 'true') {
+      (async () => {
+        try {
           const { data, status } = await axiosServer(`grade/${id}/${getCookies('user')?.userId}`, {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${getCookies('accessToken')}`
             }
           })
+
           if (status !== 200) return
 
           const { crit1, crit2, crit3, crit4, crit5 } = data
@@ -46,19 +48,16 @@ function Questions() {
             { 3: `${parseInt(crit4)}` },
             { 4: `${parseInt(crit5)}` }
           ])
-        })()
-      }
-    } catch (err) {
-      console.log(err)
+        } catch (err) {
+          console.log(err)
+          setRejectedEdit('Erro ao carregar avaliação para edição')
+          setTimeout(() => {
+            navigate('/dashboard')
+          }, 2500)
+        }
+      })()
     }
   }, [])
-
-  useEffect(() => {
-    console.log(selected[0][`${0}`])
-    console.log(selected[1][`${1}`])
-    console.log(selected[2][`${2}`])
-    console.log(selected)
-  }, [selected])
 
   function handleSetSelected(data, key) {
     const newSelected = selected.map((item) =>
@@ -104,30 +103,35 @@ function Questions() {
     }
   }
 
+
   return (
     <>
-      <div className='flex flex-col gap-4 items-center mx-auto mt-32'>
-        <Timer />
-        <button onClick={() => setModal(true)} className='rounded-md px-4 text-3xl tracking-wide font-bold py-1 bg-primary w-full duration-300 hover:bg-[#0a2d5a] hover:text-white'>Enviar trabalho</button>
-      </div>
-      <div className='flex flex-wrap w-full gap-6 justify-center relative left-1/2 my-16 -translate-x-1/2'>
-        {questions.map((question, index) => {
-          return <RadioButtons
-            preSelected={selected[index][`${index}`]}
-            key={index}
-            setSelected={data => handleSetSelected(data, index)}
-            title={question.title}
-            options={question.options}
-          />
-        })}
-      </div>
-      <Modal closeModal={() => setModal(false)} displayModal={modal}>
-        <div className='flex flex-col gap-4 rounded-md p-8 bg-bgColor text-xl'>
-          <p className='text-white'>Tem certeza que deseja enviar?</p>
-          <button onClick={handleSubmit} className='px-4 py-1 bg-primary text-zinc-950 font-semibold rounded-md duration-300 hover:bg-[#0a2d5a] hover:text-white' >Enviar</button>
-          {message && <p className='text-primary font-bold tracking-wide'>{message}</p>}
+      {rejectedEdit && <p className='absolute top-1/2 -translate-y-1/2 text-white text-3xl w-full text-center tracking-wider font-semibold'>{rejectedEdit}</p>}
+      {!rejectedEdit && <>
+        <div className='flex flex-col gap-4 items-center mx-auto mt-32'>
+          <Timer />
+          <button onClick={() => setModal(true)} className='rounded-md px-4 text-3xl tracking-wide font-bold py-1 bg-primary w-full duration-300 hover:bg-[#0a2d5a] hover:text-white'>Enviar trabalho</button>
         </div>
-      </Modal>
+        <div className='flex flex-wrap w-full gap-6 justify-center relative left-1/2 my-16 -translate-x-1/2'>
+          {questions.map((question, index) => {
+            return <RadioButtons
+              preSelected={selected[index][`${index}`]}
+              key={index}
+              setSelected={data => handleSetSelected(data, index)}
+              title={question.title}
+              options={question.options}
+            />
+          })}
+        </div>
+        <Modal closeModal={() => setModal(false)} displayModal={modal}>
+          <div className='flex flex-col gap-4 rounded-md p-8 bg-bgColor text-xl'>
+            <p className='text-white'>Tem certeza que deseja enviar?</p>
+            <button onClick={handleSubmit} className='px-4 py-1 bg-primary text-zinc-950 font-semibold rounded-md duration-300 hover:bg-[#0a2d5a] hover:text-white' >Enviar</button>
+            {message && <p className='text-primary font-bold tracking-wide'>{message}</p>}
+          </div>
+        </Modal>
+      </>
+      }
     </>
   )
 }

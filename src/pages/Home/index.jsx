@@ -3,6 +3,7 @@ import Form from 'components/Form'
 import { axiosServer } from 'config/axios/axios'
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'hooks/useCookies'
+import { Loading } from 'components/Loading'
 
 const initialValues = {
   username: '',
@@ -12,6 +13,7 @@ const initialValues = {
 export function Home() {
   const [datas, setDatas] = useState(initialValues)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const { getCookies, setCookies } = useCookies()
   const navigate = useNavigate()
 
@@ -31,6 +33,7 @@ export function Home() {
   async function onSubmit(event) {
     event.preventDefault()
     try {
+      setLoading(true)
       const res = await axiosServer('/auth/signin', {
         method: 'POST',
         data: {
@@ -60,11 +63,13 @@ export function Home() {
       setError('Usuário ou senha inválidos')
     }
 
+    setLoading(false)
     setDatas(initialValues)
   }
 
   return (
     <>
+      {loading && <Loading bgColor={'#000000aa'} colors={['var(--primary)', 'var(--secondary)', '#ffffff']} textColor={'#ffffff'} text={'Carregando...'} />}
       <div className='absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
         <Form.Root onSubmit={onSubmit}>
           <Form.Input value={datas.username} onChange={e => handleInputChange('username', e)}>
