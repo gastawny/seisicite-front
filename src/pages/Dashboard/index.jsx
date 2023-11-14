@@ -68,7 +68,7 @@ function Dashboard() {
   }, [filters])
 
   return (
-    <>
+    <div className="flex flex-col">
       {loading && (
         <Loading
           bgColor={'#000000aa'}
@@ -78,12 +78,8 @@ function Dashboard() {
         />
       )}
       {error && (
-        <p className="font-semibold text-4xl text-white text-center">
-          Refine melhor a sua busca{' '}
-          <span className="text-xl">
-            <br />
-            (Muitos resultados foram encontrados)
-          </span>
+        <p className="absolute top-1/2 -translate-y-1/2 text-white text-3xl w-full text-center tracking-wider font-semibold">
+          {error}
         </p>
       )}
       {!error && (
@@ -129,8 +125,16 @@ function Dashboard() {
             </p>
           )}
           {works.length > quantity2Show && (
-            <p className="font-semibold text-4xl text-primary text-center">
-              Refine melhor a sua busca
+            <p className="font-semibold text-2xl md:text-4xl text-white text-center tracking-wide">
+              <span className="text-primary">
+                <br />
+                {works.length}{' '}
+              </span>
+              <span>resultados foram encontrados</span>
+              <span className="text-lg md:text-2xl">
+                <br />
+                Refine melhor a sua busca{' '}
+              </span>
             </p>
           )}
           {works.length <= quantity2Show && (
@@ -142,7 +146,7 @@ function Dashboard() {
           )}
         </div>
       )}
-    </>
+    </div>
   )
 }
 

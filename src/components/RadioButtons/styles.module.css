@@ -12,6 +12,10 @@
   background: #07455faa;
   font-size: 2rem;
   font-weight: 500;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1.4rem;
+  }
 }
 .wrapper .box {
   display: flex;
