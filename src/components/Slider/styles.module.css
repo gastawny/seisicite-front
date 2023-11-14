@@ -1,0 +1,120 @@
+/*Body reset and container*/
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(0deg, #1f1f1f 0%, #414141 100%);
+  height: 100vh;
+  padding: 1em;
+}
+
+.range-slider {
+  max-width: 30em;
+  margin: 8em auto;
+  position: relative;
+  display: flex;
+}
+
+/*Reset original slider*/
+.range-slider .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 0, 4em;
+  outline: none;
+  border-radius: 3px;
+  background: #1f1f1f;
+  box-shadow:
+    3px 3px 6px #000,
+    inset 1px 1px 1px #909090;
+}
+
+.range-slider .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.7em;
+  height: 1.7em;
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+}
+
+/*add new thumb (1) */
+.range-slider .slider-thumb {
+  position: absolute;
+  width: 1.7em;
+  height: 1.7em;
+  background: #090909;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: inset 0px 1px 2px #909090;
+}
+
+/*add new thumb (2) */
+.range-slider .slider-thumb::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.7em;
+  height: 0.7em;
+  background: #333;
+  border-radius: inherit;
+  transition: 0, 3s;
+}
+.range-slider:hover slider-thumb:before {
+  background: #2ae9c9;
+}
+
+/*tooltip styles (1)*/
+.range-slider .tooltip {
+  position: absolute;
+  width: 2.8em;
+  height: 2em;
+  top: -2em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #090909;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  border-radius: 3px;
+  box-shadow:
+    0px 3px 10px #1f1f1f,
+    inset 0px 1px 2px #909090;
+}
+
+/*tooltip styles (2)*/
+.range-slider .tooltip::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid #090909;
+  bottom: -0.5em;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+/*progress styles and responsive design*/
+.range-slider .progress {
+  width: 50%;
+  height: 0.4em;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #335bf4 0%, #2ae9c9 100%);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 700px) {
+  .neu-range-slider {
+    width: 100%;
+  }
+}
