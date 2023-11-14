@@ -17,4 +17,3 @@ export function Option({ id, text, name, onChange, checked, value }) {
     </label>
   )
 }
-

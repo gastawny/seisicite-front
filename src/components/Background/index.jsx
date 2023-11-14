@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
 import { keyframes, styled } from 'styled-components'
 
 function randomIndex(array) {
   return Math.floor(Math.random() * array.length)
 }
 
-export function Background({ colors, frequency }) {
+export function Background({ colors, frequency, children }) {
   const [lines, setLines] = useState([])
   const [isTabVisible, setIsTabVisible] = useState(true)
 
@@ -78,7 +77,7 @@ export function Background({ colors, frequency }) {
           />
         ))}
       </div>
-      <Outlet />
+      {children}
     </div>
   )
 }
@@ -104,7 +103,8 @@ const Line = styled.div`
   width: 20px;
   aspect-ratio: 1/1;
   background: ${({ lineColor }) => lineColor};
-  box-shadow: 0 0 10px ${({ lineColor }) => lineColor},
+  box-shadow:
+    0 0 10px ${({ lineColor }) => lineColor},
     0 0 20px ${({ lineColor }) => lineColor},
     0 0 30px ${({ lineColor }) => lineColor},
     0 0 50px ${({ lineColor }) => lineColor};
@@ -112,7 +112,7 @@ const Line = styled.div`
   animation: ${animate} 5s linear forwards;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 100%;
     left: 25%;

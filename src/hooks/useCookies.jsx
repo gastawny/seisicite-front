@@ -19,6 +19,6 @@ export function useCookies() {
   return {
     getCookies,
     setCookies,
-    removeCookies
+    removeCookies,
   }
 }

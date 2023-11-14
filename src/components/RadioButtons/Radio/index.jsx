@@ -17,4 +17,3 @@ export function Radio({ id, text, name, onChange, checked, value }) {
     </label>
   )
 }
-

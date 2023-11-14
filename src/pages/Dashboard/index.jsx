@@ -11,7 +11,7 @@ const initialFilters = {
   theme: '',
   id: '',
   author: '',
-  title: ''
+  title: '',
 }
 
 function Dashboard() {
@@ -21,14 +21,15 @@ function Dashboard() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const { getCookies } = useCookies()
+  const quantity2Show = 25
 
   const handleSetFilters = useCallback((data, field) => {
-    setFilters(curr => ({ ...curr, [field]: data }))
+    setFilters((curr) => ({ ...curr, [field]: data }))
   }, [])
 
   const filterWorks = useCallback((works, filters) => {
-    return works.filter(work =>
-      Object.keys(filters).every(key => {
+    return works.filter((work) =>
+      Object.keys(filters).every((key) => {
         if (filters[key] === '') return true
         const fieldsToCompare = ['id', 'theme', 'author', 'title']
         if (fieldsToCompare.includes(key))
@@ -38,6 +39,7 @@ function Dashboard() {
     )
   }, [])
 
+  // prettier-ignore
   useEffect(() => {
     (async () => {
       setLoading(true)
@@ -45,8 +47,8 @@ function Dashboard() {
         const { data, status } = await axiosServer('/work', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${getCookies('accessToken')}`
-          }
+            Authorization: `Bearer ${getCookies('accessToken')}`,
+          },
         })
 
         if (status !== 200) return
@@ -62,40 +64,84 @@ function Dashboard() {
   }, [])
 
   useEffect(() => {
-    if (allWorks.length)
-      setWorks(filterWorks(allWorks, filters))
+    if (allWorks.length) setWorks(filterWorks(allWorks, filters))
   }, [filters])
 
   return (
     <>
-      {loading && <Loading bgColor={'#000000aa'} colors={['var(--primary)', 'var(--secondary)', '#ffffff']} textColor={'#ffffff'} text={'Carregando...'} />}
-      {error && <p className='absolute top-1/2 -translate-y-1/2 text-white text-3xl w-full text-center tracking-wider font-semibold'>{error}</p>}
-      {
-        !error && <div className="flex flex-col flex-wrap mt-24 gap-16">
-          <SearchFilter.Root className='relative flex flex-col lg:flex-row w-11/12 lg:w-2/3 h-auto lg:h-64 mx-auto mt-8 gap-6 bg-[#18181b] rounded-lg p-6'>
-            <div className='flex flex-col w-full justify-between gap-6 lg:gap-0'>
-              <SearchFilter.Radio options={['SEI', 'SICITE']} title='SEI ou SICITE?' setSelected={data => handleSetFilters(data, 'modality')} />
-              <SearchFilter.Text value={filters.author} onChange={e => handleSetFilters(e.target.value, 'author')}>Autor</SearchFilter.Text>
+      {loading && (
+        <Loading
+          bgColor={'#000000aa'}
+          colors={['var(--primary)', 'var(--secondary)', '#ffffff']}
+          textColor={'#ffffff'}
+          text={'Carregando...'}
+        />
+      )}
+      {error && (
+        <p className="font-semibold text-4xl text-white text-center">
+          Refine melhor a sua busca{' '}
+          <span className="text-xl">
+            <br />
+            (Muitos resultados foram encontrados)
+          </span>
+        </p>
+      )}
+      {!error && (
+        <div className="flex flex-col flex-wrap mt-24 gap-16">
+          <SearchFilter.Root className="relative flex flex-col lg:flex-row w-11/12 lg:w-2/3 h-auto lg:h-64 mx-auto mt-8 gap-6 bg-[#18181b] rounded-lg p-6">
+            <div className="flex flex-col w-full justify-between gap-6 lg:gap-0">
+              <SearchFilter.Radio
+                options={['SEI', 'SICITE']}
+                title="SEI ou SICITE?"
+                setSelected={(data) => handleSetFilters(data, 'modality')}
+              />
+              <SearchFilter.Text
+                value={filters.author}
+                onChange={(e) => handleSetFilters(e.target.value, 'author')}
+              >
+                Autor
+              </SearchFilter.Text>
             </div>
-            <div className='flex flex-col w-full justify-between gap-6 lg:gap-0'>
-              <SearchFilter.Text value={filters.title} onChange={e => handleSetFilters(e.target.value, 'title')}>Título do trabalho</SearchFilter.Text>
-              <SearchFilter.Text value={filters.theme} onChange={e => handleSetFilters(e.target.value, 'theme')}>Tema</SearchFilter.Text>
-              <SearchFilter.Text value={filters.id} onChange={e => handleSetFilters(e.target.value, 'id')}>id</SearchFilter.Text>
+            <div className="flex flex-col w-full justify-between gap-6 lg:gap-0">
+              <SearchFilter.Text
+                value={filters.title}
+                onChange={(e) => handleSetFilters(e.target.value, 'title')}
+              >
+                Título do trabalho
+              </SearchFilter.Text>
+              <SearchFilter.Text
+                value={filters.theme}
+                onChange={(e) => handleSetFilters(e.target.value, 'theme')}
+              >
+                Tema
+              </SearchFilter.Text>
+              <SearchFilter.Text
+                value={filters.id}
+                onChange={(e) => handleSetFilters(e.target.value, 'id')}
+              >
+                id
+              </SearchFilter.Text>
             </div>
           </SearchFilter.Root>
-          {!works.length && <p className='font-semibold text-4xl text-primary text-center'>Nenhum resultado encontrado</p>}
-          {works.length > 10 && <p className='font-semibold text-4xl text-primary text-center'>Melhore a sua busca</p>}
-          {
-            works.length <= 10 && (
-              <div className='flex flex-col lg:flex-row flex-wrap justify-center items-center lg:justify-around'>
-                {works.map((work) => (
-                  <Card key={work.id} {...work} />
-                ))}
-              </div>
-            )
-          }
-        </div >
-      }
+          {!works.length && (
+            <p className="font-semibold text-4xl text-primary text-center">
+              Nenhum resultado encontrado
+            </p>
+          )}
+          {works.length > quantity2Show && (
+            <p className="font-semibold text-4xl text-primary text-center">
+              Refine melhor a sua busca
+            </p>
+          )}
+          {works.length <= quantity2Show && (
+            <div className="flex flex-col lg:flex-row flex-wrap justify-center items-center lg:justify-around">
+              {works.map((work) => (
+                <Card key={work.id} {...work} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </>
   )
 }

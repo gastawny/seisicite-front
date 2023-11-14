@@ -4,14 +4,9 @@ import styles from './styles.module.css'
 function Text({ children, value, onChange, type = 'text' }) {
   return (
     <div className={styles['inputBox']}>
-      <input
-        value={value}
-        onChange={onChange}
-        type={type}
-        required
-      />
-      <span >{children}</span>
-      <i ></i>
+      <input value={value} onChange={onChange} type={type} required />
+      <span>{children}</span>
+      <i></i>
     </div>
   )
 }

@@ -11,7 +11,6 @@ export function sessionHOC(Component) {
       const token = getCookies('accessToken')
 
       if (!token) navigate('/')
-
     }, [])
 
     return <Component {...props} />
