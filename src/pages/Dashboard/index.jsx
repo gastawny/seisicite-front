@@ -41,6 +41,13 @@ function Dashboard() {
 
   // prettier-ignore
   useEffect(() => {
+    const works = JSON.parse(localStorage.getItem('works'))
+    if(works && new Date(works?.expires) > new Date()) {
+      setAllWorks(works?.data)
+      setWorks(filterWorks(works?.data, filters))
+      return
+    }
+
     (async () => {
       setLoading(true)
       try {
@@ -55,6 +62,12 @@ function Dashboard() {
 
         setAllWorks(data)
         setWorks(filterWorks(data, filters))
+
+        localStorage.setItem('works', JSON.stringify({
+          expires: new Date((new Date()).getTime() + (2 * 60 * 60 * 1000)),
+          data
+        }))
+        
       } catch (err) {
         console.log(err)
         setError('Erro ao carregar os trabalhos')
