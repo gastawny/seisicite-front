@@ -1,14 +1,28 @@
 import styles from './styles.module.css'
 
-export function Slider() {
+export function Slider({ min, max, value, onInput, tooltip }) {
   return (
-    <>
-      <div className={styles['range-slider']}></div>
-      <input type="range" min="0" max="100" value="50" className="slider" />
-      <div className={styles['slider-thumb']}>
-        <div className={styles['tooltip']}></div>
+    <div className={styles['range-slider']}>
+      <input
+        className={styles['slider']}
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onInput={onInput}
+      />
+      <div
+        style={{ left: `${(100 * (value - min)) / (max - min)}%` }}
+        className={styles['slider-thumb']}
+      >
+        <div className={styles['tooltip']}>{tooltip}</div>
       </div>
-      <div className={styles['progress']}></div>
-    </>
+      <div
+        style={{
+          width: `${(100 * (value - min)) / (max - min)}%`,
+        }}
+        className={styles['progress']}
+      ></div>
+    </div>
   )
 }

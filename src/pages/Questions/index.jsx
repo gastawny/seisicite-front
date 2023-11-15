@@ -16,11 +16,7 @@ function Questions() {
   const [rejectedEdit, setRejectedEdit] = useState('')
   const [message, setMessage] = useState('')
   const [modal, setModal] = useState(false)
-  const [selected, setSelected] = useState(
-    questions.map((question, index) => ({
-      [index]: question.options[0],
-    }))
-  )
+  const [selected, setSelected] = useState(questions.map((_, index) => ({ [index]: 6 })))
 
   const queryParams = new URLSearchParams(location.search)
 
@@ -116,11 +112,10 @@ function Questions() {
             {questions.map((question, index) => {
               return (
                 <RadioButtons
-                  preSelected={selected[index][`${index}`]}
+                  preSelected={60}
                   key={index}
                   setSelected={(data) => handleSetSelected(data, index)}
                   title={question.title}
-                  options={question.options}
                 />
               )
             })}

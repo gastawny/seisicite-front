@@ -12,7 +12,7 @@ export function NotFound() {
     <Background colors={['var(--primary)', 'var(--secondary)']} frequency={500}>
       <section className="relative min-h-screen w-full flex justify-center items-center">
         <button
-          className="bg-primary text-white font-bold py-8 px-16 rounded-lg absolute top-10 left-10 text-3xl"
+          className="bg-primary text-white font-bold py-4 px-8 rounded-lg absolute top-10 left-10 text-2xl duration-300 hover:bg-[#07638a]"
           onClick={handleClick}
         >
           Voltar

@@ -1,22 +1,17 @@
 [
   {
-    "title": "O aluno(a) utilizou linguagem técnica e teve clareza na exposição do trabalho?",
-    "options": ["6", "7", "8", "9", "10"]
+    "title": "1. O aluno(a) utilizou linguagem técnica e teve clareza na exposição do trabalho?"
   },
   {
-    "title": "O tempo de apresentação do trabalho foi adequado?",
-    "options": ["6", "7", "8", "9", "10"]
+    "title": "2. O tempo de apresentação do trabalho foi adequado?"
   },
   {
-    "title": "O(a) aluno(a) demonstrou domínio do assunto durante a apresentação?",
-    "options": ["6", "7", "8", "9", "10"]
+    "title": "3. O(a) aluno(a) demonstrou domínio do assunto durante a apresentação?"
   },
   {
-    "title": "O conteúdo visual e a apresentação do trabalho foram adequados?",
-    "options": ["6", "7", "8", "9", "10"]
+    "title": "4. O conteúdo visual e a apresentação do trabalho foram adequados?"
   },
   {
-    "title": "O desempenho do(a) aluno(a) foi satisfatório na arguição?",
-    "options": ["6", "7", "8", "9", "10"]
+    "title": "5. O desempenho do(a) aluno(a) foi satisfatório na arguição?"
   }
 ]

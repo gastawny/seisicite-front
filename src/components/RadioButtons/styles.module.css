@@ -5,22 +5,23 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
+
 .wrapper .title {
   color: #fff;
   padding: 1rem 2rem;
   text-align: center;
   background: #07455faa;
-  font-size: 2rem;
+  min-height: 12rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
   font-weight: 500;
 
   @media screen and (max-width: 1024px) {
     font-size: 1.4rem;
   }
 }
+
 .wrapper .box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 20px 30px;
-  border-radius: 10px;
+  padding: 5rem 2rem;
 }

@@ -1,37 +1,29 @@
 import { useEffect, useState } from 'react'
-import { Radio } from './Radio'
 import styles from './styles.module.css'
-import { v4 } from 'uuid'
+import { Slider } from 'components/Slider'
 
-export function RadioButtons({ options, title, setSelected, preSelected }) {
+export function RadioButtons({ title, setSelected, preSelected }) {
   const [option, setOption] = useState(preSelected)
 
   useEffect(() => {
     setOption(preSelected)
   }, [preSelected])
 
-  const handleChange = (event) => {
-    setOption(event.target.value)
-    setSelected(event.target.value)
-  }
-
-  const isChecked = (value) => option === value
+  useEffect(() => {
+    setSelected(parseInt(option / 10))
+  }, [option])
 
   return (
     <div className={styles['wrapper']}>
       <div className={styles['title']}>{title}</div>
       <div className={styles['box']}>
-        {options.map((option) => (
-          <Radio
-            key={option}
-            id={option + v4()}
-            name={option + v4()}
-            value={option}
-            text={option}
-            onChange={handleChange}
-            checked={isChecked(option)}
-          />
-        ))}
+        <Slider
+          min={60}
+          max={100}
+          tooltip={parseInt(option / 10)}
+          value={option}
+          onInput={(e) => setOption(e.target.value)}
+        />
       </div>
     </div>
   )
