@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 export function sessionHOC(Component) {
   return function Wrapper(props) {
-    const { getCookies } = useCookies()
+    const { getCookies, removeCookies } = useCookies()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -12,7 +12,12 @@ export function sessionHOC(Component) {
       const refreshToken = getCookies('refreshToken')
       const user = getCookies('user')
 
-      if (!accessToken || !refreshToken || !user) navigate('/')
+      if (!accessToken || !refreshToken || !user) {
+        removeCookies('accessToken')
+        removeCookies('refreshToken')
+        removeCookies('user')
+        navigate('/')
+      }
     }, [])
 
     return <Component {...props} />
