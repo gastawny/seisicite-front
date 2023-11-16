@@ -10,8 +10,10 @@ export function Card({ title, id, author, theme }) {
         <h3>{title}</h3>
         <h4>{author}</h4>
         <h5>{theme}</h5>
-        <Link to={`/questions/${id}?edit=true`}>Editar</Link>
-        <Link to={`/questions/${id}`}>Avaliar</Link>
+        <Link to={`/questions/${id}?edit=true&title=${title}&author=${author}&theme=${theme}`}>
+          Editar
+        </Link>
+        <Link to={`/questions/${id}?title=${title}&author=${author}&theme=${theme}`}>Avaliar</Link>
       </div>
     </div>
   )

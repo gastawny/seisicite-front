@@ -8,9 +8,11 @@ export function sessionHOC(Component) {
     const navigate = useNavigate()
 
     useEffect(() => {
-      const token = getCookies('accessToken')
+      const accessToken = getCookies('accessToken')
+      const refreshToken = getCookies('refreshToken')
+      const user = getCookies('user')
 
-      if (!token) navigate('/')
+      if (!accessToken || !refreshToken || !user) navigate('/')
     }, [])
 
     return <Component {...props} />

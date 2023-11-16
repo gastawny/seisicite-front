@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export function Timer() {
+export function Timer({ title }) {
   const [totalSeconds, setTotalSeconds] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
 
@@ -38,6 +38,7 @@ export function Timer() {
 
   return (
     <div className="bg-zinc-950 bg-opacity-40 text-white rounded-md p-4 flex flex-col w-full text-xl gap-2">
+      <span className="text-2xl mb-2">{title}</span>
       <div className="text-primary text-center text-6xl">
         {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
       </div>

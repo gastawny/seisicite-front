@@ -19,6 +19,13 @@ function Questions() {
   const [selected, setSelected] = useState(questions.map((_, index) => ({ [index]: 6 })))
 
   const queryParams = new URLSearchParams(location.search)
+  const title = queryParams.get('title')
+  const author = queryParams.get('author')
+  const theme = queryParams.get('theme')
+
+  if (!title || !author || !theme) {
+    navigate('/dashboard')
+  }
 
   useEffect(() => {
     const edit = queryParams.get('edit')
@@ -104,15 +111,18 @@ function Questions() {
       )}
       {!rejectedEdit && (
         <>
-          <div className="flex flex-col gap-4 items-center mx-auto mt-32">
-            <span className="text-2xl text-white">Tempo de apresentação</span>
-            <Timer />
+          <span className="mt-32 mx-auto text-2xl text-center w-3/5 text-white font-semibold tracking-wide">
+            {id} - {title} <br />
+            <br /> {author} - {theme}
+          </span>
+          <div className="flex flex-col gap-4 items-center mx-auto mt-20">
+            <Timer title="Tempo de apresentação" />
           </div>
           <div className="flex flex-wrap w-[95%] md:w-full gap-6 justify-center relative left-1/2 my-16 -translate-x-1/2">
             {questions.map((question, index) => {
               return (
                 <RadioButtons
-                  preSelected={60}
+                  preSelected={selected[index][`${index}`] * 10}
                   key={index}
                   setSelected={(data) => handleSetSelected(data, index)}
                   title={question.title}
