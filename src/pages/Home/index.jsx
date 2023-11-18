@@ -81,7 +81,7 @@ export function Home() {
           text={'Carregando...'}
         />
       )}
-      <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[50vh] md:w-[75vw] md:h-[60vh] xl:w-[35vw] xl:h-[65vh] 2xl:w-[30vw] 2xl:h-[45vh]">
+      <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[28rem] w-[95vw] md:w-[75vw] xl:w-[35vw] 2xl:w-[30vw]">
         <Form.Root onSubmit={onSubmit} submitButtonText="Login">
           <Form.Input value={datas.username} onChange={(e) => handleInputChange('username', e)}>
             Usuário

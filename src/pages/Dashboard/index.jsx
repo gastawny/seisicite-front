@@ -91,7 +91,7 @@ function Dashboard() {
         />
       )}
       {error && (
-        <p className="absolute top-1/2 -translate-y-1/2 text-white text-3xl w-full text-center tracking-wider font-semibold">
+        <p className="absolute top-1/2 -translate-y-1/2 text-red-500 text-3xl w-full text-center tracking-wider font-semibold">
           {error}
         </p>
       )}

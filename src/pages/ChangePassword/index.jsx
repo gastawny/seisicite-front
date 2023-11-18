@@ -48,7 +48,7 @@ export function ChangePassword() {
       }, 2500)
     } catch (error) {
       console.log(error)
-      setError('Senha antiga inválida')
+      setError('Senha antiga ou usuário inválidoa')
     }
 
     setLoading(false)
@@ -71,7 +71,7 @@ export function ChangePassword() {
         </p>
       )}
       {!message && (
-        <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[40rem] md:w-[82vw] md:h-[82vh] xl:w-[60vw] xl:h-[32rem] 2xl:w-[50vw] 2xl:h-[34rem]">
+        <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[40rem] md:w-[82vw] md:h-[32rem] xl:w-[60vw] 2xl:w-[50vw] 2xl:h-[34rem]">
           <Form.Root onSubmit={onSubmit} submitButtonText="Alterar senha">
             <Form.Input value={datas.username} onChange={(e) => handleInputChange('username', e)}>
               Usuário
