@@ -1,11 +1,12 @@
+import { Background } from 'components/Background'
 import Form from 'components/Form'
 import { Loading } from 'components/Loading'
 import { axiosServer } from 'config/axios/axios'
-import { useCookies } from 'hooks/useCookies'
 import { useCallback, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const initialValues = {
+  username: '',
   oldPassword: '',
   newPassword: '',
   confirmPassword: '',
@@ -16,7 +17,6 @@ export function ChangePassword() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const { getCookies } = useCookies()
   const navigate = useNavigate()
 
   const handleInputChange = useCallback((type, event) => {
@@ -34,7 +34,7 @@ export function ChangePassword() {
       const res = await axiosServer('/auth/changePassword', {
         method: 'PUT',
         data: {
-          userId: getCookies('user').userId,
+          username: datas.username,
           oldPassword: datas.oldPassword,
           newPassword: datas.newPassword,
         },
@@ -56,7 +56,7 @@ export function ChangePassword() {
   }
 
   return (
-    <>
+    <Background colors={['var(--primary)', 'var(--secondary)']} frequency={500}>
       {loading && (
         <Loading
           bgColor={'#000000aa'}
@@ -71,33 +71,44 @@ export function ChangePassword() {
         </p>
       )}
       {!message && (
-        <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[60vh] md:w-[75vw] md:h-[75vh] md:mt-8 xl:w-[40vw] xl:h-[75vh] xl:mt-6 2xl:w-[30vw] 2xl:h-[55vh]">
-          <Form.Root onSubmit={onSubmit}>
+        <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[40rem] md:w-[82vw] md:h-[82vh] xl:w-[60vw] xl:h-[32rem] 2xl:w-[50vw] 2xl:h-[34rem]">
+          <Form.Root onSubmit={onSubmit} submitButtonText="Alterar senha">
+            <Form.Input value={datas.username} onChange={(e) => handleInputChange('username', e)}>
+              Usuário
+            </Form.Input>
             <Form.Input
               value={datas.oldPassword}
               type="password"
               onChange={(e) => handleInputChange('oldPassword', e)}
             >
-              Senha antiga
+              Senha recebida por e-mail
             </Form.Input>
-            <Form.Input
-              value={datas.newPassword}
-              type="password"
-              onChange={(e) => handleInputChange('newPassword', e)}
+            <div className="flex gap-4 flex-col md:flex-row">
+              <Form.Input
+                value={datas.newPassword}
+                type="password"
+                onChange={(e) => handleInputChange('newPassword', e)}
+              >
+                Nova senha
+              </Form.Input>
+              <Form.Input
+                value={datas.confirmPassword}
+                type="password"
+                onChange={(e) => handleInputChange('confirmPassword', e)}
+              >
+                Confirme a sua nova senha
+              </Form.Input>
+            </div>
+            <Link
+              to="/"
+              className="text-primary text-base text-right mt-4 font-medium duration-300 hover:text-white"
             >
-              Nova senha
-            </Form.Input>
-            <Form.Input
-              value={datas.confirmPassword}
-              type="password"
-              onChange={(e) => handleInputChange('confirmPassword', e)}
-            >
-              Confirme a sua nova senha
-            </Form.Input>
+              Fazer login
+            </Link>
             {error && <span className="text-red-500 font-bold mt-2">{error}</span>}
           </Form.Root>
         </div>
       )}
-    </>
+    </Background>
   )
 }

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import Form from 'components/Form'
 import { axiosServer } from 'config/axios/axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'hooks/useCookies'
 import { Loading } from 'components/Loading'
 import { Background } from 'components/Background'
@@ -82,7 +82,7 @@ export function Home() {
         />
       )}
       <div className="absolute z-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] h-[50vh] md:w-[75vw] md:h-[60vh] xl:w-[35vw] xl:h-[65vh] 2xl:w-[30vw] 2xl:h-[45vh]">
-        <Form.Root onSubmit={onSubmit}>
+        <Form.Root onSubmit={onSubmit} submitButtonText="Login">
           <Form.Input value={datas.username} onChange={(e) => handleInputChange('username', e)}>
             Usuário
           </Form.Input>
@@ -93,6 +93,12 @@ export function Home() {
           >
             Senha
           </Form.Input>
+          <Link
+            to="/changePassword"
+            className="text-primary text-base text-right mt-4 font-medium duration-300 hover:text-white"
+          >
+            Esqueceu sua senha?
+          </Link>
           {error && <span className="text-red-500 font-bold mt-2">{error}</span>}
         </Form.Root>
       </div>

@@ -10,10 +10,10 @@ export function AppRoutes() {
   return (
     <Routes location={location} key={location.pathname}>
       <Route index element={<Home />} />
+      <Route path="changePassword" element={<ChangePassword />} />
       <Route element={<Header />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="questions/:id" element={<Questions />} />
-        <Route path="changePassword" element={<ChangePassword />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
