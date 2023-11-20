@@ -1,5 +1,4 @@
 import { RadioButtons } from 'components/RadioButtons'
-import { Timer } from 'components/Timer'
 import { useEffect, useState } from 'react'
 import { sessionHOC } from 'services/auth/sessionHOC'
 import questions from 'utils/questions'
@@ -115,9 +114,6 @@ function Questions() {
             {id} - {title} <br />
             <br /> {author} - {theme}
           </span>
-          <div className="flex flex-col gap-4 items-center mx-auto mt-20">
-            <Timer title="Tempo de apresentação" />
-          </div>
           <div className="flex flex-wrap w-[95%] md:w-full gap-6 justify-center relative left-1/2 my-16 -translate-x-1/2">
             {questions.map((question, index) => {
               return (
