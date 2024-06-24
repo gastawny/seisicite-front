@@ -1,3 +1,5 @@
+import { SpeedInsights } from '@vercel/speed-insights/react'
+
 import './styles/index.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -9,6 +11,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AppRoutes />
+      <SpeedInsights />
     </BrowserRouter>
   </React.StrictMode>
 )
